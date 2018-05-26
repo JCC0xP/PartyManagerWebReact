@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import { Badge } from 'antd';
+import { Badge, Modal } from 'antd';
 import { request } from 'graphql-request';
-import swal from 'sweetalert2';
 
 import { selectAllAllocations } from './Queries';
 
@@ -40,10 +39,9 @@ class CalendarViewAllAllocations extends Component {
                 });
             })
             .catch(err => {
-                swal({
-                    title: 'Erro ao realizar a chamada',
-                    text: 'API está fora ou o request está errado',
-                    type: 'error'
+                Modal.error({
+                    title: 'Erro ...',
+                    content: 'Tente novamente mais tarde.',
                 });
             });
     };
