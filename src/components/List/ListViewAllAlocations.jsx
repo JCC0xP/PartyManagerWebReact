@@ -11,8 +11,8 @@ const ListViewAllAllocations = (props) => (
             <List.Item>
                 <List.Item.Meta
                     avatar={<Avatar src={item.avatar} />}
-                    title={<a href="https://ant.design">{item.title}</a>}
-                    description={item.description}
+                    title={<a href="https://ant.design">{item.decoration}</a>}
+                    description={`${item.name} ${item.date} ${item.type} ${item.street || ''}`}
                 />
             </List.Item>
         )}

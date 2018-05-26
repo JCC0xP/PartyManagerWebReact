@@ -8,9 +8,12 @@ const selectAllAllocations = `
             type
             allocationsOfDay {
                 avatar
-                title
-                description
+                decoration
+                name
                 date
+                type
+                street
+                phone
             }
         }
     }
