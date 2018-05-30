@@ -83,7 +83,7 @@ class CalendarViewAllAllocations extends Component {
     dateCellRender = (value) => {
         const listData = [...this.getListData(value)];
         return (
-            <ul className="events">
+            <ul className="events" style={{listStyle: 'none', position: 'relative', margin: '0 auto', padding: '0', marginBottom: '0.4rem'}}>
                 {
                     listData.map(item => (
                         <li key={item.id}>
