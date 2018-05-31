@@ -1,7 +1,6 @@
 const createAllocations = `
-    mutation CreateAllocations ($avatar: String!, $decoration: String!, $phone: String!, $date: String!, $type: String!, $name: String!, $email: String!) {
+    mutation CreateAllocations ($decoration: String!, $phone: String!, $date: String!, $type: String!, $name: String!, $email: String!) {
         createAllocations(
-            avatar: $avatar
             decoration: $decoration
             phone: $phone
             date: $date
@@ -23,4 +22,13 @@ const createAllocations = `
     }
 `;
 
-export { createAllocations };
+const allDecorations = `
+    query allDecorations {
+        allDecorations {
+            key
+            name
+        }
+    }
+`;
+
+export { createAllocations, allDecorations };

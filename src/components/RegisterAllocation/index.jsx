@@ -33,9 +33,11 @@ const RegisterAllocationContent = () => (
                             optionFilterProp="children"
                             filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
                         >
-                            <Option value="jack">Jack</Option>
-                            <Option value="lucy">Lucy</Option>
-                            <Option value="tom">Tom</Option>
+                            {
+                                state.allDecorations.map(decoration => (
+                                    <Option value={decoration.key}>{decoration.name}</Option>
+                                ))
+                            }
                         </Select>
                     </FormItem>
                     <FormItem label="Tipo da locacao" style={{width: '100%', marginBottom: '1rem'}}>
