@@ -4,7 +4,7 @@ import { request } from 'graphql-request';
 import { Modal } from 'antd';
 import { browserHistory } from 'react-router';
 
-import { createAllocations } from './Queries';
+import { createAllocations, allDecorations } from './Queries';
 
 function hasErrors(fieldsError) {
     return Object.keys(fieldsError).some(field => fieldsError[field]);
@@ -12,14 +12,18 @@ function hasErrors(fieldsError) {
 
 class RegisterAllocation extends React.Component {
     state = {
-        avatar: 'https://cdn.iconscout.com/public/images/icon/premium/png-512/wolverine-logan-xman-marvel-avatar-head-people-39c887e125ffaefe-512x512.png',
         decoration: '',
         type: 'Pegue e monte',
         name: '',
         email: '',
         phone: '',
         date: moment().format('DD/MM/YYYY'),
+        allDecorations: [],
     };
+
+    componentWillMount() {
+        this.handleGetDecorations();
+    }
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -36,6 +40,25 @@ class RegisterAllocation extends React.Component {
             })
             .then(() => {
                 browserHistory.replace('/home');
+            })
+            .catch(errors => {
+                const response = JSON.stringify(errors);
+                Modal.error({
+                    title: 'Erro ...',
+                    content: JSON.parse(response).response.errors[0].message,
+                });
+            });
+    };
+
+    handleGetDecorations = () => {
+        request(
+            process.env.API || 'http://localhost:3003/graphql',
+            allDecorations
+        )
+            .then(data => {
+                this.setState({
+                    allDecorations: data.allDecorations,
+                });
             })
             .catch(err => {
                 Modal.error({
